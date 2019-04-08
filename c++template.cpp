@@ -1,9 +1,7 @@
 /*
-
 --------------------------------------------- C++ TEMPLATE FOR COMPETETIVE PROGRAMMING----------------------------------------------------------
 Author : Harish Vemula
 Handle : harish49
-
 */
 
 #include "iostream"
@@ -30,7 +28,7 @@ using namespace std;
 #define inpl(x) scanf("%ld",&x)
 #define inpll(x) scanf("%lld",&x)
 #define inpc(x) scanf("%c",&x)
-#define inps(x) scanf("%s",x)
+#define inps(x) getline(cin,x)
 #define inpf(x) scanf("%f",&x)
 #define inplf(x) scanf("%lf",&x)
 #define rg register int
@@ -67,7 +65,7 @@ long int get_lcm(long int x,long int y)
 lld lcm;
 if (x>=y && x%y==0)
 {
-lcm=a;
+lcm=x;
 }
 else if(y>=x && y%x==0)
 {
@@ -78,7 +76,6 @@ else
 lcm=x*y;
 }
 return lcm;
-ld gcd=(a*b)/lcm;
 }
 
 
@@ -88,7 +85,7 @@ long int get_gcd(long int x,long int y)
 lld lcm;
 if (x>=y && x%y==0)
 {
-lcm=a;
+lcm=x;
 }
 else if(y>=x && y%x==0)
 {
@@ -98,17 +95,17 @@ else
 {
 lcm=x*y;
 }
-lld gcd=(a*b)/lcm;
+lld gcd=(x*y)/lcm;
 return gcd;
 }
 
 
-vector<int> stringtonum(string s)
+v_i stringtonum(string s)
 {
-vector<int>vect;
+v_i vect;	
 fr(i,0,s.size(),1)
 {
-vect.pb(s[i]-'0');
+vect.pb((int)s[i]-'0');
 }
 return vect; // return vector
 }
@@ -137,7 +134,6 @@ cout.tie(0);
 
 /* Initialisize the variables outside the loop , if they are to be read multiple times , it's a good practice
 Example :
-
 int n;
 while(testcase--)
 {
@@ -156,15 +152,16 @@ scanf("%d",&n);
 /*------------------------------------------------------SOME FUNCTIONS--------------------------------------------------------------------*/
 
 /* Convert string to an integer array 
-vector<int>v;
+v_i v;
 string s;
-inps(x);
-v=stringtonum(x);
+inps(s);
+v=stringtonum(s);
 */
 
 
 /* 
 lcm and gcd of two numbers with out functions 
+lld a,b;
 inpl(a);
 inpl(b);
 ld lcm=get_lcm(a,b);
@@ -173,14 +170,17 @@ ld gcd=get_gcd(a,b);
   
 /*
 For rounding up the division values :
-lld q = (x + y - 1) / y;
+lld x,y,q;
+inpll(x);
+inpll(y);
+q = (x + y - 1) / y;
 
 For performing ceil operation :
-lld q = (x / y) + (x % y != 0)
+q = (x / y) + (x % y != 0);
 
 For performing floor operation :
-lld q = (x / y) 
-*/
- 
-}
+q = (x / y);
 
+*/
+
+}

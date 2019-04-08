@@ -61,6 +61,7 @@ typedef map<int,int> mp_ii;
 typedef set<int> set_i;
 typedef multiset<int> ms_i;
 
+
 long int get_lcm(long int x,long int y)
 {
 lld lcm;
@@ -80,6 +81,8 @@ return lcm;
 ld gcd=(a*b)/lcm;
 }
 
+
+
 long int get_gcd(long int x,long int y)
 {
 lld lcm;
@@ -98,6 +101,8 @@ lcm=x*y;
 lld gcd=(a*b)/lcm;
 return gcd;
 }
+
+
 vector<int> stringtonum(string s)
 {
 vector<int>vect;
@@ -107,9 +112,12 @@ vect.pb(s[i]-'0');
 }
 return vect; // return vector
 }
+
+
+
 int main()
 {
-fast;
+fast;    //Fast I/O
 cin.tie(0);
 cout.tie(0);
 

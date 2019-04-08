@@ -47,6 +47,8 @@ using namespace std;
 #define pb push_back
 #define em emplace_back
 #define inf (long long int)1e9
+#define big INT_MAX
+#define small INT_MIN
 #define pi 3.1415926535897932384626433832795
 #define mod 1000000007
 #define fast ios_base::sync_with_stdio(false)
@@ -59,6 +61,43 @@ typedef map<int,int> mp_ii;
 typedef set<int> set_i;
 typedef multiset<int> ms_i;
 
+long int get_lcm(long int x,long int y)
+{
+lld lcm;
+if (x>=y && x%y==0)
+{
+lcm=a;
+}
+else if(y>=x && y%x==0)
+{
+lcm=y;
+}
+else
+{
+lcm=x*y;
+}
+return lcm;
+ld gcd=(a*b)/lcm;
+}
+
+long int get_gcd(long int x,long int y)
+{
+lld lcm;
+if (x>=y && x%y==0)
+{
+lcm=a;
+}
+else if(y>=x && y%x==0)
+{
+lcm=y;
+}
+else
+{
+lcm=x*y;
+}
+lld gcd=(a*b)/lcm;
+return gcd;
+}
 vector<int> stringtonum(string s)
 {
 vector<int>vect;
@@ -120,22 +159,20 @@ v=stringtonum(x);
 lcm and gcd of two numbers with out functions 
 inpl(a);
 inpl(b);
-ld lcm;
-if (a>=b && a%b==0)
-{
-lcm=a;
-}
-else if(b>=a && b%a==0)
-{
-lcm=b;
-}
-else
-{
-lcm=a*b;
-}
-ld gcd=(a*b)/lcm;
+ld lcm=get_lcm(a,b);
+ld gcd=get_gcd(a,b);
 */
+  
+/*
+For rounding up the division values :
+lld q = (x + y - 1) / y;
 
+For performing ceil operation :
+lld q = (x / y) + (x % y != 0)
 
+For performing floor operation :
+lld q = (x / y) 
+*/
+ 
 }
 

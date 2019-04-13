@@ -1,92 +1,151 @@
 #include <bits/stdc++.h> 
-
+#include <unordered_map> 
 using namespace std; 
 
-const int ALPHABET_SIZE = 26; 
 
 struct trie 
 { 
-	struct trie *child[ALPHABET_SIZE]; 
+	unordered_map<char,trie*>mp;
 
-	bool word_end; 
+	int word_end=0; 
+	
 }; 
 
-struct trie *getNode() 
+trie *getNode() 
 { 
-	struct trie *new_node = new trie; 
+	trie *new_node = new trie; 
 
-	new_node->word_end = false; 
+	new_node->word_end = 0; 
 
-	for (int i= 0;i<ALPHABET_SIZE;i++)
-	{ 
-		new_node->child[i] = NULL; 
-	}	
 	return new_node; 
 } 
-void insert(struct trie *root, string key) 
+void insert(trie* &root, string key) 
 { 
-	struct trie *current = root; 
-
-	for (int i = 0; i < key.length(); i++) 
-	{ 
-		int letter = key[i] - 'a'; 
-	
-		if (current->child[letter]==false)
-		{ 
-			current->child[letter] = getNode(); 
-		}	
-		
-		current = current->child[letter]; 
-	} 
-
-	current->word_end= true; 
-} 
-
-
-bool search(struct trie *root, string key) 
-{ 
-	struct trie *current = root; 
-
-	for (int i = 0; i < key.length(); i++) 
-	{ 
-		int letter = key[i] - 'a'; 
-		if (current->child[letter]==false)
-		{ 
-			return false; 
-		}
-		current = current->child[letter]; 
-	} 
-
-	return (current!= NULL && current->word_end); 
-} 
-
-void delete() 
-int main() 
-{ 
-	int i,n,searches;
-	cin>>n>>searches;
-	string keys[n];
-	for(i=0;i<n;i++)
+     if(root == nullptr)
+     {
+         root=getNode();
+     }
+      trie *current = root;
+	for (int i = 0 ; i < key.size() ; i++ )
 	{
-		cin>>keys[i];
-	}
-	struct trie *root = getNode(); 
-	for(i=0;i<n;i++) 
-	{
-		insert(root, keys[i]); 
-	}
-	string x;
-	while(searches--)
-	{
-		cin>>x;
-		if(search(root,x))
+		if(current->mp.find(key[i])==current->mp.end())
 		{
-			cout<<"Found"<<'\n';
+			current->mp[key[i]]=getNode();
+		}
+		current=current->mp[key[i]];
+	}
+	current->word_end++;
+} 
+
+bool search(trie *root, string key) 
+{ 
+	trie *current = root; 
+	if(current==NULL)
+	{
+		return false;
+	}
+	for(int i = 0 ; i < key.size() ; i++ )
+	{
+		if(current->mp[key[i]])
+		{
+			current=current->mp[key[i]];
 		}
 		else
 		{
-			cout<<"Not Found"<<'\n';
+			return false;
 		}
+	}
+	if(current->word_end==0)
+	{
+	   return false;
+	}
+	return true;
+} 
+int occurence(trie *root, string key) 
+{ 
+	trie *current = root; 
+	if(current==NULL)
+	{
+		return 0;
+	}
+	for(int i = 0 ; i < key.size() ; i++ )
+	{
+		if(current->mp[key[i]])
+		{
+			current=current->mp[key[i]];
+		}
+		else
+		{
+			return 0;
+		}
+	}
+	return current->word_end;
+} 
+
+bool delete_trie(trie *root , string key)
+{
+	trie *current=root;
+	if(current==nullptr)
+	{
+		return false;
+	}
+	for( int i = 0 ; i < key.size() ; i++ )
+	{
+		if(current->mp[key[i]])
+		{
+			current=current->mp[key[i]];
+		}
+		else
+		{
+			return false;
+		}
+	}
+	current->word_end--;
+	return true;
+}
+int main() 
+{ 
+	trie *root= nullptr;
+	int n,query;
+	cin>>n>>query;
+	string s;
+	while(n--)
+	{
+	 cin>>s;
+	 insert(root ,s);
+	}
+	string x;
+	int y;
+	while(query--)
+	{
+	    cin>>y>>x;
+	    if(y==1)
+	    {
+	        if(search(root,x))
+	        {
+	            cout<<x<<" "<<"FOUND";
+	        }
+	        else
+	        {
+	            cout<<"NOT FOUND";
+	        }
+	    }
+	    else if(y==2)
+	    {
+	        if(delete_trie(root,x))
+	        {
+	            cout<<x<<" "<<"DELETED";
+	        }
+	        else
+	        {
+	            cout<<"NOT FOUND";
+	        }
+	    }
+	    else if(y==3)
+	    {
+	        cout<<occurence(root,x);
+	    }
+	    cout<<'\n';
 	}
 	return 0; 
 } 

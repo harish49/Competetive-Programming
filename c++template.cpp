@@ -1,186 +1,40 @@
 /*
 --------------------------------------------- C++ TEMPLATE FOR COMPETETIVE PROGRAMMING----------------------------------------------------------
 Author : Harish Vemula
-Handle : harish49
+Handle : harish_49
 */
 
-#include "iostream"
-#include "algorithm"
-#include "stack"
-#include "queue"
-#include "string"
-#include "deque"
-#include "list"
-#include "map"
-#include "set"
-#include "vector"
-#include "stdlib.h"
-#include "functional"
-#include "cmath"
-#include "string"
-#include "numeric"
-#include "iterator"
-#include "bitset"
+// #pragma GCC optimize "trapv" Uncomment when dealing with huge numbers
+/*<----------PBDS---------->
 
-using namespace std;
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
 
-#define inp(x) scanf("%d",&x)
-#define inpl(x) scanf("%ld",&x)
-#define inpll(x) scanf("%lld",&x)
-#define inpc(x) scanf("%c",&x)
-#define inps(x) getline(cin,x)
-#define inpf(x) scanf("%f",&x)
-#define inplf(x) scanf("%lf",&x)
-#define rg register int
-#define ld long int
-#define lld long long int
-#define usd unsigned long long int
-#define mset(arr, val) memset(arr, val , sizeof(arr))
-#define fr(i,val,size,it) for(register int i=val; i<size ; i+=it)
-#define rfr(i,size,val,it) for(register int i=size-1; i>=val; i-=it)
-#define all(container) container.begin(), container.end()
-#define rall(cont) container.end(), container.begin()
-#define each(it, s) for (auto it = s.begin(); it != s.end(); ++it)
-#define mk make_pair
-#define pb push_back
-#define em emplace_back
-#define inf (long long int)1e9
-#define big INT_MAX
-#define small INT_MIN
-#define pi 3.1415926535897932384626433832795
+using namespace __gnu_pbds;
+template <typename T>
+using order_set = tree<T,null_type,less<T>,rb_tree_tag,tree_order_statistics_node_update>;
+
+order_set<datatype>oset;
+Kth smallest : *oset.find_by_order(k-1); // 0 based index
+No of elements less than k : oset.order_of_key(k);
+Erase X : oset.erase(x)
+<----------PBDS---------->*/
+#include<iostream>
+#include<bits/stdc++.h>
+#define int long long
 #define mod 1000000007
-#define fast ios_base::sync_with_stdio(false)
-typedef pair<int, int> p_ii;
-typedef vector<int> v_i;
-typedef vector<string> v_s;
-typedef vector<pair<int , int> > vp_ii;
-typedef vector< vector<int> > vvi;
-typedef map<int,int> mp_ii;
-typedef set<int> set_i;
-typedef multiset<int> ms_i;
-
-
-long int get_lcm(long int x,long int y)
+#define pb(x) push_back(x)
+#define gcd(a,b) __gcd(a,b)
+#define all(v) v.begin(),v.end()
+#define lcm(a,b) (a*b)/gcd(a,b)
+#define bits(x) __builtin_popcountll(x)
+#define fast ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+using namespace std;
+int32_t main()
 {
-lld lcm;
-if (x>=y && x%y==0)
-{
-lcm=x;
-}
-else if(y>=x && y%x==0)
-{
-lcm=y;
-}
-else
-{
-lcm=x*y;
-}
-return lcm;
+    /*  HEYY YOU !! You wanna be a coder , then stop using those  huge templates, maintain some shorter one like this .
+        Trust me , you will be having an edge when compared with the people who use templates ............ HELLO PROGRAMMERS :) */
 }
 
 
 
-long int get_gcd(long int x,long int y)
-{
-lld lcm;
-if (x>=y && x%y==0)
-{
-lcm=x;
-}
-else if(y>=x && y%x==0)
-{
-lcm=y;
-}
-else
-{
-lcm=x*y;
-}
-lld gcd=(x*y)/lcm;
-return gcd;
-}
-
-
-v_i stringtonum(string s)
-{
-v_i vect;	
-fr(i,0,s.size(),1)
-{
-vect.pb((int)s[i]-'0');
-}
-return vect; // return vector
-}
-
-
-
-int main()
-{
-fast;    //Fast I/O
-cin.tie(0);
-cout.tie(0);
-
-                                        /* Some common practices to be followed */
-
-/* Use scanf for faster input */
-
-/* Use '\n' instead of endl */
-
-/* Use register int for initialising loop counters eg: register int i,j; */
-
-/* Use emplace_back for faster input in vector */
-
-/* While declaring an array , first read the size and then initialise an array of size (eg : arr[size]), it will optimise the code memory */
-
-/* For declaring an array of larger size such as greater than 10^6 elements, declare the array globally */
-
-/* Initialisize the variables outside the loop , if they are to be read multiple times , it's a good practice
-Example :
-int n;
-while(testcase--)
-{
-scanf("%d",&n);
-}
-*/
-
-/* Use 1LL , in case of multiplying large numbers  Eg : long long int big = 1LL*241241*1241241; */
-
-/* Use (1<<k) , for calculating 2 power k */
-
-/* To calculate the number of digits use : floor(log(number))+1 , base=10 */
-
-/* To take input with spaces  , use getline method : getline(cin, s); where s is a string */
-
-/*------------------------------------------------------SOME FUNCTIONS--------------------------------------------------------------------*/
-
-/* Convert string to an integer array 
-v_i v;
-string s;
-inps(s);
-v=stringtonum(s);
-*/
-
-
-/* 
-lcm and gcd of two numbers with out functions 
-lld a,b;
-inpl(a);
-inpl(b);
-ld lcm=get_lcm(a,b);
-ld gcd=get_gcd(a,b);
-*/
-  
-/*
-For rounding up the division values :
-lld x,y,q;
-inpll(x);
-inpll(y);
-q = (x + y - 1) / y;
-
-For performing ceil operation :
-q = (x / y) + (x % y != 0);
-
-For performing floor operation :
-q = (x / y);
-
-*/
-
-}

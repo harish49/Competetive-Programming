@@ -1,1 +1,3 @@
-DSA implementations in progress.
+Datastructures and Algorithms that can be useful in competitive programming.
+
+
